@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz sobre Enchentes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #00796b;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question h3 {
+            color: #004d40;
+        }
+        button {
+            background-color: #00796b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #004d40;
+        }
+        .result {
+            text-align: center;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Quiz sobre Enchentes</h1>
+
+        <form id="quizForm">
+
+            <!-- Perguntas -->
+
+            <div class="question">
+                <h3>1. O que é uma enchente?</h3>
+                <label><input type="radio" name="q1" value="certo"> Acúmulo excessivo de água que transborda</label><br>
+                <label><input type="radio" name="q1" value="errado"> Tremor de terra</label><br>
+                <label><input type="radio" name="q1" value="errado"> Incêndio florestal</label>
+            </div>
+
+            <div class="question">
+                <h3>2. Qual é uma das principais causas das enchentes?</h3>
+                <label><input type="radio" name="q2" value="certo"> Acúmulo de lixo e falta de drenagem</label><br>
+                <label><input type="radio" name="q2" value="errado"> Ventos fortes</label><br>
+                <label><input type="radio" name="q2" value="errado"> Erupções vulcânicas</label>
+            </div>
+
+            <div class="question">
+                <h3>3. O que devemos fazer durante uma enchente?</h3>
+                <label><input type="radio" name="q3" value="certo"> Procurar locais mais altos e seguros</label><br>
+                <label><input type="radio" name="q3" value="errado"> Entrar em porões</label><br>
+                <label><input type="radio" name="q3" value="errado"> Continuar andando pela água</label>
+            </div>
+
+            <div class="question">
+                <h3>4. Como podemos ajudar a evitar enchentes?</h3>
+                <label><input type="radio" name="q4" value="certo"> Não jogando lixo nas ruas e cuidando dos bueiros</label><br>
+                <label><input type="radio" name="q4" value="errado"> Jogando lixo nas calçadas</label><br>
+                <label><input type="radio" name="q4" value="errado"> Cortando árvores</label>
+            </div>
+
+            <div class="question">
+                <h3>5. As enchentes podem causar:</h3>
+                <label><input type="radio" name="q5" value="certo"> Danos materiais, doenças e mortes</label><br>
+                <label><input type="radio" name="q5" value="errado"> Mais parques nas cidades</label><br>
+                <label><input type="radio" name="q5" value="errado"> Menos poluição</label>
+            </div>
+
+            <div class="question">
+                <h3>6. As enchentes são mais comuns em:</h3>
+                <label><input type="radio" name="q6" value="certo"> Locais com pouca drenagem e muito asfalto</label><br>
+                <label><input type="radio" name="q6" value="errado"> Áreas de deserto</label><br>
+                <label><input type="radio" name="q6" value="errado"> Regiões sem rios ou mares</label>
+            </div>
+
+            <div class="question">
+                <h3>7. O que acontece quando bueiros estão entupidos?</h3>
+                <label><input type="radio" name="q7" value="certo"> A água não escoa e causa alagamentos</label><br>
+                <label><input type="radio" name="q7" value="errado"> A água evapora mais rápido</label><br>
+                <label><input type="radio" name="q7" value="errado"> A cidade fica mais limpa</label>
+            </div>
+
+            <div class="question">
+                <h3>8. Qual dessas atitudes ajuda a prevenir enchentes?</h3>
+                <label><input type="radio" name="q8" value="certo"> Plantar árvores e preservar áreas verdes</label><br>
+                <label><input type="radio" name="q8" value="errado"> Jogar óleo na pia</label><br>
+                <label><input type="radio" name="q8" value="errado"> Jogar lixo em rios</label>
+            </div> 
+
+            <div class="question">
+                <h3>9. Em caso de enchente, você deve:</h3>
+                <label><input type="radio" name="q9" value="certo"> Evitar contato com a água, que pode estar contaminada</label><br>
+                <label><input type="radio" name="q9" value="errado"> Tomar banho na água da enchente</label><br>
+                <label><input type="radio" name="q9" value="errado"> Se abrigar em lugares baixos</label>
+            </div>
+
+            <div class="question">
+                <h3>10. As enchentes podem ser evitadas se:</h3>
+                <label><input type="radio" name="q10" value="certo"> Todos colaborarem cuidando do meio ambiente</label><br>
+                <label><input type="radio" name="q10" value="errado"> Jogarmos lixo nas ruas</label><br>
+                <label><input type="radio" name="q10" value="errado"> Deixarmos os bueiros entupidos</label>
+            </div>
+
+            <button type="button" onclick="verificarRespostas()">Verificar Respostas</button>
+        </form>
+
+        <div class="result" id="resultado"></div>
+    </div>
+
+    <script>
+        function verificarRespostas() {
+            const respostas = document.forms["quizForm"];
+            let pontos = 0;
+
+            for (let i = 1; i <= 10; i++) {
+                const resposta = respostas["q" + i].value;
+                if (resposta === "certo") {
+                    pontos++;
+                }
+            }
+
+            document.getElementById("resultado").innerHTML = 
+                `Você acertou ${pontos} de 10 perguntas. ${pontos >= 8 ? "Parabéns! 🎉 Você entende bem sobre enchentes." : "Tente novamente! 💪 Você pode aprender mais sobre como se prevenir."}`;
+        }
+    </script>
+
+</body>
+</html>

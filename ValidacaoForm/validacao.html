@@ -3,9 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ValidForm - WebDev - GS25</title>
+    <title>Document</title>
 </head>
 <body>
-    
+    <form id="meuFormulario">
+    <label>Nome:</label><br>
+    <input type="text" id="nome"><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" id="email"><br><br>
+
+    <label>Idade:</label><br>
+    <input type="number" id="idade"><br><br>
+
+    <button type="submit">Enviar</button>
+    </form>
+
+    <div id="mensagem"></div>
+
+    <script>
+        document.getElementById("meuFormulario").addEventListener("submit", function(event) {
+            event.preventDefault(); // Impede o envio automático do formulário
+
+            // Captura dos campos
+            const nome = document.getElementById("nome").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const idade = document.getElementById("idade").value.trim();
+            const mensagem = document.getElementById("mensagem");
+
+            let erros = [];
+
+            // Validações
+            if (nome === "") {
+                erros.push("O nome é obrigatório.");
+            }
+
+            if (email === "") {
+                erros.push("O e-mail é obrigatório.");
+            } else if (!email.includes("@") || !email.includes(".")) {
+                erros.push("O e-mail não é válido.");
+            }
+
+            if (idade === "") {
+                erros.push("A idade é obrigatória.");
+            } else if (isNaN(idade) || idade < 0) {
+                erros.push("Idade inválida.");
+            }
+
+            // Exibir erros ou sucesso
+            if (erros.length > 0) {
+                mensagem.style.color = "red";
+                mensagem.innerHTML = erros.join("<br>");
+            } else {
+                mensagem.style.color = "green";
+                mensagem.innerHTML = "Formulário enviado com sucesso!";
+                // Aqui você pode enviar os dados, por exemplo usando fetch ou liberar o envio:
+                // this.submit();
+            }
+        });
+
+    </script>
 </body>
 </html>
